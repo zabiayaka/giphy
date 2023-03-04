@@ -1,0 +1,13 @@
+import requests
+import json
+x = input("enter any word: ")
+response_API = requests.get('https://api.giphy.com/v1/gifs/search?api_key=NAk2UDQKmSuGCDhNnnDsB1jgJVo5f2Ts&q={}&limit=1&offset=0&rating=g&lang=en'.format(x))
+#print(response_API.status_code)
+data = response_API.text
+parse_json = json.loads(data)
+url_request = parse_json['data']
+url_requests= []
+for obj in url_request:
+    url_requests.append(obj['url'])
+
+print(url_requests)
